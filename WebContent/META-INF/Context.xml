@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+<!-- STS 에서  DAO 객체를 사용하여 DB에 대한 
+ Connection을 받아올 경우 server 의 context.xml 
+ 에 설정된 리소스 값을 통해 가능하다.  -->
+
+	<Resource  
+		name="jdbc/mysqlDB"
+		auth="Container"
+		type="javax.sql.DataSource"
+		driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/jspdb"
+		username="root"
+		password="1234"
+	/>
+	
+</Context>
+
+
+
+
