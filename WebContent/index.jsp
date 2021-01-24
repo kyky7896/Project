@@ -9,20 +9,19 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>쉐어 마켓</title>
+  <title>마켓</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href="css/business-frontpage.css" rel="stylesheet">
-
 </head>
 
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -49,17 +48,9 @@
   </nav>
 
   <!-- Header -->
-  <header class="bg-primary py-2 mb-4">
-    <div class="container h-50">
-      <div class="row h-50 align-items-center">
-        <div class="col-lg-10">
-          <h1 class="display-5 text-white mt-3 mb-1">Share market</h1>
-          <p class="lead mb-4 text-white-50">..</p>
-        </div>
-      </div>
-    </div>
-  </header>
-
+	<jsp:include page="/inc/header.jsp" />
+	
+	
   <!-- Page Content -->
   <div class="container">
     <div class="row">
@@ -134,13 +125,7 @@
   <!-- /.container -->
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
-
+	<jsp:include page="/inc/bottom.jsp" />
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

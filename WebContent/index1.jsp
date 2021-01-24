@@ -16,6 +16,7 @@
 
   <!-- Custom styles for this template -->
   <link href="css/business-frontpage.css" rel="stylesheet">
+  
 
 </head>
 
@@ -52,7 +53,10 @@
           if(id!=null){
         	  %>
         	<li class="nav-item">
-              <a class="nav-link" href="myInfo.jsp">나의정보</a>
+              <a class="nav-link" href="update.jsp">정보수정</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="delete.jsp">탈퇴하기</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="logout.jsp">로그아웃</a>
@@ -62,7 +66,7 @@
           		if(id.equals("admin")){
           			%>
           			<li class="nav-item">
-                    <a class="nav-link" href="membership.jsp">회원정보관리</a>
+                    <a class="nav-link" href="memberList.jsp">회원 보기</a>
                   </li>
           		<%
           		}
@@ -83,17 +87,7 @@
   </nav>
 
   <!-- Header -->
-  <header class="bg-primary py-2 mb-4">
-    <div class="container h-50">
-      <div class="row h-50 align-items-center">
-        <div class="col-lg-10">
-          <h1 class="display-5 text-white mt-3 mb-1">Share market</h1>
-          <p class="lead mb-4 text-white-50">...</p>
-        </div>
-      </div>
-    </div>
-  </header>
-
+  <jsp:include page="/inc/header.jsp" />
   <!-- Page Content -->
   <div class="container">
     <div class="row">
@@ -168,12 +162,7 @@
   <!-- /.container -->
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+  <jsp:include page="/inc/bottom.jsp" />
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

@@ -141,10 +141,15 @@ form .error {
 							</div>
 						</div>
 						<form action="loginPro.jsp" method="post" name="login">
-							<div class="form-group">
+							<div class="form-group md-5">
 								<label for="id">아이디</label> 
 								<input type="text" name="id" class="form-control" id="id"
 									 placeholder="아이디를 입력하세요">
+							<div class="col-md-5 mb-3">
+								<p class="text-center">
+								<a href=".jsp" class="singUp btn mybtn"> 중복확인 </a>
+								</p>
+							</div>
 							</div>
 							<div class="form-group">
 								<label for="pw">비밀번호</label> <input
