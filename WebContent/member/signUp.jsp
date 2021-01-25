@@ -68,7 +68,7 @@ h1, h2, h3 {
 								<h1>Signup</h1>
 							</div>
 						</div>
-						<form action="signUpPro.jsp" method="post">
+						<form action="signUpPro.jsp" method="post" name="singUp" >
 							<div class="form-group">
 								<label for="id"> 아이디 </label>
 								<input type="text" name="id" class="form-control" 
@@ -183,7 +183,11 @@ h1, h2, h3 {
         }).open();
     }
     
-    
+    function check_signUp(){
+    	alert("회원가입 체크!");
+    	
+    	
+    }
     
 </script>
 

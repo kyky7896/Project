@@ -262,4 +262,51 @@ public class MemberDAO {
 		return result;
 	}
 	// updateMember(umb)
+	
+	//deleteMember(id,pw)
+	public int deleteMember(String id,String pw){
+		int result=-1;
+		try {
+			//1.2.DB불러오기
+			con=getCon();
+			//3.SQL & PSTMT 구문
+			sql="select pw from sharemarket_member where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			//4.실행
+			rs=pstmt.executeQuery();
+			
+			//5.데이터처리
+			if(rs.next()){ //pw가 나올때
+				if(pw.equals(rs.getString("pw"))){
+					//회원일때
+					//sql&pstmt
+					sql="delete from sharemarket_member where id=?";
+					pstmt=con.prepareStatement(sql);
+					pstmt.setString(1,id);
+					
+					//실행
+					pstmt.executeUpdate();
+					result=1;
+				}else{	//비밀번호 오류
+					result=0;
+					
+				}
+				
+			}else{	//비회원일때
+				result=-1;
+				
+			}
+			System.out.println("DAO:회원 삭제 처리 완료"+result);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closeDB();
+		}
+		
+		return result;
+		
+	}
+	//deleteMember(id,pw)
 }

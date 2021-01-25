@@ -34,7 +34,7 @@
 		%>
 		<script type="text/javascript">
 		alert("로그인 성공!");
-		location.href="index1.jsp"
+		location.href="../index1.jsp"
 		</script>
 		<%
 		

@@ -47,26 +47,26 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="#">게시판</a>
           </li>
           <%
           if(id!=null){
         	  %>
         	<li class="nav-item">
-              <a class="nav-link" href="update.jsp">정보수정</a>
+              <a class="nav-link" href="./member/update.jsp">정보수정</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="delete.jsp">탈퇴하기</a>
+              <a class="nav-link" href="./member/delete.jsp">탈퇴하기</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="logout.jsp">로그아웃</a>
+              <a class="nav-link" href="./member/logout.jsp">로그아웃</a>
             </li>
             
             <%
           		if(id.equals("admin")){
           			%>
           			<li class="nav-item">
-                    <a class="nav-link" href="memberList.jsp">회원 보기</a>
+                    <a class="nav-link" href="./member/memberList.jsp">회원 보기</a>
                   </li>
           		<%
           		}
@@ -75,10 +75,10 @@
             %>
          
           <li class="nav-item">
-            <a class="nav-link" href="signUp.jsp">회원가입</a>
+            <a class="nav-link" href="./member/signUp.jsp">회원가입</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="login.jsp">로그인</a>
+            <a class="nav-link" href="./member/login.jsp">로그인</a>
           </li>
           <%	} %>
         </ul>

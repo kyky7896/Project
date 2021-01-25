@@ -29,18 +29,18 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+            <a class="nav-link" href="index.jsp">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="index2.jsp">게시판</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="signUp.jsp">회원가입</a>
+            <a class="nav-link" href="./member/signUp.jsp">회원가입</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="login.jsp">로그인</a>
+            <a class="nav-link" href="./member/login.jsp">로그인</a>
           </li>
         </ul>
       </div>

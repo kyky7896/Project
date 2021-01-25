@@ -118,6 +118,7 @@ form .error {
 <title>Insert title here</title>
 </head>
 <body>
+
 <!--  Bootstrap 그리드의 기본 구조  -->
 <!-- 
 	<div class="container">
@@ -140,14 +141,15 @@ form .error {
 								<h1>login</h1>
 							</div>
 						</div>
-						<form action="loginPro.jsp" method="post" name="login">
+						<form action="loginPro.jsp" method="post" name="login" 
+						onsubmit="return check_member();">
 							<div class="form-group md-5">
 								<label for="id">아이디</label> 
 								<input type="text" name="id" class="form-control" id="id"
 									 placeholder="아이디를 입력하세요">
 							<div class="col-md-5 mb-3">
 								<p class="text-center">
-								<a href=".jsp" class="singUp btn mybtn"> 중복확인 </a>
+<!-- 								<a href=".jsp" class="singUp btn mybtn"> 중복확인 </a> -->
 								</p>
 							</div>
 							</div>
@@ -157,8 +159,8 @@ form .error {
 									placeholder="비밀번호를 입력하세요">
 							</div>
 							<div class="col-md-12 text-center ">
-								<button type="submit"
-									class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
+								<input type="submit"
+									class=" btn btn-block mybtn btn-primary tx-tfm">
 							</div>
 							<div class="col-md-12">
 								<div class="login-or">
@@ -177,5 +179,26 @@ form .error {
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+
+	function check_member(){
+		
+		//아이디 공백 체크
+		if(document.login.id.value==""){
+			alert("아이디를 입력하세요");
+			document.login.id.focus();
+			return false;
+		}
+		
+		//비밀번호 공백 체크
+		if(document.login.pw.value.length<=0){
+			alert("비밀번호를 입력하세요");
+			document.login.pw.focus();
+			return false;
+		}
+		
+	}
+
+</script>
 </body>
 </html>
