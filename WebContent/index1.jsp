@@ -47,7 +47,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">게시판</a>
+            <a class="nav-link" href="index2.jsp">게시판</a>
           </li>
           <%
           if(id!=null){

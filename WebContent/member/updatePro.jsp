@@ -38,7 +38,7 @@
 		%>
 		<script type="text/javascript">
 			alert("정보 수정 완료!");
-			location.href="index1.jsp";
+			location.href="../index1.jsp";
 		
 		</script>
 		<%
