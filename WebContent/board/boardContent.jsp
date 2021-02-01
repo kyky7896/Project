@@ -1,3 +1,4 @@
+<%@page import="com.member.BoardBean"%>
 <%@page import="com.member.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -97,7 +98,19 @@ ul, li {
 </head>
 <body>
 	<%
+		int num=Integer.parseInt(request.getParameter("num"));
+		String pageNum=request.getParameter("pageNum");
 		
+		BoardDAO bdao=new BoardDAO();
+		bdao.updateReadCount(num);
+		
+		BoardBean bb=bdao.getBoard(num);
+		System.out.println("pro:"+bb);
+		
+		String content=bb.getContent();
+		if(content !=null){
+			content=content.replace("\r\n", "<br>");
+		}
 	%>
 	<div id="mainWrapper">
 		<ul>
@@ -105,50 +118,55 @@ ul, li {
 			<li>글쓰기</li>
 
 			<!-- 게시판 목록  -->
-			<form action="board/writePro.jsp" method="post">
 					<ul id="ulTable">
 						<li>
 							<ul>
-								<li>게시판 글쓰기</li>
+								<li>게시판 본문보기</li>
 
 							</ul>
 						</li>
 						<!-- 게시물이 출력될 영역 -->
 						<li>
 							<ul>
-								<li>글쓴이 : <input type="text" name="name" style="height:25px">
+								<li>글번호: <%=bb.getNum() %>
+								<br>
+									조회수:	<%=bb.getReadcount() %>
 								</li>
 							</ul>
 						</li>
 
 						<li>
 							<ul>
-								<li>비밀번호 : <input type="password" name="pass" style="height:25px">
+								<li>글쓴이: <%=bb.getName() %>
+								<br>
+									작성일: <%=bb.getDate() %>
 								</li>
 							</ul>
 						</li>
 
 						<li>
 							<ul>
-								<li>제목 : <input type="text" name="subject" style="height:25px">
+								<li>제목 : <%=bb.getSubject() %>
 								</li>
 							</ul>
 						</li>
 
 						<li>
 							<ul>
-								<li>내용 <br>
-								<textarea name="content" style="height:303px;width:500px"></textarea>
+								<li>내용 : <%=bb.getContent() %><br>
+								
 								</li>
 							</ul>
 						</li>
 					</ul>
 				</li>
 			<div>
-				<input type="submit" value="글쓰기 완료"> 
+				<input type="button" value="수정하기">
+				<input type="button" value="삭제하기">
+				<input type="button" value="답글쓰기">
+				<input type="button" value="목록으로">
 			</div>
 				
-			</form>
 
 			<!-- 게시판 페이징 영역 -->
 

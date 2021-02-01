@@ -1,11 +1,13 @@
+<%@page import="com.member.BoardBean"%>
 <%@page import="com.member.BoardDAO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판</title>
+<title>Canvas</title>
 <style type="text/css">
     body{
         line-height:2em;        
@@ -85,24 +87,57 @@
     .left {
         text-align : left;
 }
-	.right{
-		text-align : right;
-}
 
 
 </style>
 
 </head>
 <body>
+	<%
+		// DB정보를 가져와야함.
+		//정보를 처리해주는 메서드를 생성 : getBoardCount()
+		BoardDAO bdao = new BoardDAO();
+		//DB에 글 정보가 있는지 체크
+		int cnt=bdao.getBoardCount();
+		System.out.println("pro:글개수"+cnt);
 
+		// 페이징 처리 - 게시판에 보여질 글의 갯수를 페이징처리
+		// 한 페이지에서 보여줄 글의 수
+		int pageSize = 5;	
+		
+		// 현재 페이지 정보 저장 -> 주소 + ?pageNum=2 붙여주면 다음 페이지 보여줌  
+		String pageNum= request.getParameter("pageNum"); //파라미터로 넘기면 String이 됨.
+		if(pageNum==null){
+			pageNum="1"; 
+		}
+		
+		//페이지 출력할 첫 행을 계산
+		int currentPage = Integer.parseInt(pageNum); //현재페이지 정보를 숫자로 바꾼다.
+		int startRow = (currentPage-1)*pageSize+1; 
+		
+		
+		
+		///////////////////////////////////////////////////////////////////////
+		
+		
+		ArrayList boardList=null;
+		if(cnt !=0){
+			
+			boardList=bdao.getBoardList(startRow, pageSize);
+			System.out.println("pro:글목록 저장완료!");
+		}
+	
+	
+	%>
     <div id="mainWrapper">
+
         <ul>
             <!-- 게시판 제목 -->
-            <li>게시판</li>
+            <li>게시판 Title </li>
 
             <!-- 게시판 목록  -->
-            <li>
-                
+            <li> <br>
+              <a class="btn btn-primary btn-sm" href="./index3.jsp">글쓰기 &raquo;</a>
                 <ul id ="ulTable">
                     <li>
                         <ul>
@@ -113,64 +148,78 @@
                             <li>조회수</li>
                         </ul>
                     </li>
+                    
+        <%
+		for(int i=0;i<boardList.size();i++){ 
+			BoardBean bb = (BoardBean) boardList.get(i);
+		%> 
                     <!-- 게시물이 출력될 영역 -->
                     <li>
-                        <ul>
-                            <li>1</li>
-                            <li class="left">제목제목제목제목1</li>
-                            <li>2014.07.09</li>
-                            <li>자바킹</li>
-                            <li>0</li>
+                        <ul >
+                            <li><%=bb.getNum() %></li>
+                            <li><a href="index4.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">
+                            <%=bb.getSubject() %>
+                            </a>
+                            </li>
+                            <li><%=bb.getDate() %></li>
+                            <li><%=bb.getName() %></li>
+                            <li><%=bb.getReadcount() %></li>
                         </ul>
                     </li>
-
-                    <li>
-                        <ul>
-                            <li>2</li>
-                            <li class="left">제목제목제목제목1</li>
-                            <li>2014.07.09</li>
-                            <li>자바킹</li>
-                            <li>0</li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <ul>
-                            <li>3</li>
-                            <li class="left">제목제목제목제목1</li>
-                            <li>2014.07.09</li>
-                            <li>자바킹</li>
-                            <li>0</li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <ul>
-                            <li>4</li>
-                            <li class="left">제목제목제목제목1</li>
-                            <li>2014.07.09</li>
-                            <li>자바킹</li>
-                            <li>0</li>
-                        </ul>
-                    <li>                                        
-                </ul>
-            </li>
-
+		<%
+		}
+		%>
             <!-- 게시판 페이징 영역 -->
             <li>
                 <div id="divPaging">
-                    <div>◀</div>
-                       <div><b>1</b></div>
-                    <div>2</div>
-                    <div>3</div>
-                    <div>4</div>
-                    <div>5</div>
-                    <div>▶</div>
-                </div>
-            </li>
-           		<div>
-					<a class="btn btn-primary btn-sm " href="index3.jsp">글쓰기</a>
+                
+                <%
+                if(cnt != 0 ){
+                	
+                
+                //전체 페이지 수 계산하기
+                int pageCount=cnt/pageSize +(cnt%pageSize==0? 0:1);
+                
+                int pageBlock=3;
+                
+                int startPage=((currentPage-1)/pageBlock)*pageBlock+1;
+                
+                int endPage=startPage+pageBlock-1;
+                
+                if(endPage > pageCount){
+                	endPage = pageCount;
+                	
+                }
+                
+                
+                %>
+                <%
+                	if(startPage> pageBlock){
+                
+                %>
+               
+                	<a href="index2.jsp?pageNum=<%=startPage-pageBlock%>">◀ </a>
+               <%
+               		} 
+               %>
+               
+               <%
+               		for(int i=startPage;i<=endPage;i++){
+               %>
+               		<a href="index2.jsp?pageNum=<%=i %>"><%=i %></a>
+				<%
+               		}
+				%>
+				
+				<%
+					if(endPage < pageCount){
+				
+				%>
+                	<a href="index2.jsp?pageNum=<%=startPage+pageBlock%>">▶ </a>
+                <%} %>	
 				</div>
+			</li>
+			<%} %>
             <!-- 검색 폼 영역 -->
             <li id='liSearchOption'>
                 <div>
@@ -182,6 +231,7 @@
                     <input id='txtKeyWord' />
                     <input type='button' value='검색'/>
                 </div>
+                  
                 </li>
 
         </ul>
