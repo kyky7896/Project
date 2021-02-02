@@ -9,6 +9,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.sun.org.apache.bcel.internal.generic.RETURN;
+
 public class BoardDAO {
 
 	// 공통 변수 선언
@@ -293,4 +295,63 @@ public class BoardDAO {
 	}
 	
 	//getBoard(num)
+	
+
+	// updateBoard(bb)
+	public int updateBoard(BoardBean bb){
+		int result = -1;
+		// -1 : 아이디없음, 0 : 비밀번호 오류, 1 : 정상처리
+		
+		try {
+			// 1.2. 디비연결
+			con = getCon();
+			// 3. sql 작성 (select-글이 있는지 판단)& pstmt 객체
+			sql ="select pass from sharemarket_board where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, bb.getNum());
+			
+			// 4. sql 실행
+			rs = pstmt.executeQuery();
+			
+			// 5. 데이터 처리
+			if(rs.next()){
+				if(bb.getPass().equals(rs.getString("pass"))){
+					//3. sql 작성  (update-해당글 수정) & pstmt 객체 
+					sql ="update sharemarket_board set name=?,subject=?,"
+							+ "content=? where num=?";
+					
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, bb.getName());
+					pstmt.setString(2, bb.getSubject());
+					pstmt.setString(3, bb.getContent());
+					pstmt.setInt(4, bb.getNum());
+					//4. sql 실행
+					result = pstmt.executeUpdate();
+					
+					//result = 1;				
+					System.out.println("DAO : 글 수정- 정상 수정");
+					
+				}else{
+					// 비밀번호 오류
+					System.out.println("DAO : 글 수정- 비밀번호 오류");
+					result = 0;
+				}
+			}else{
+				// 글없음
+				System.out.println("DAO : 글 수정- 글 없음");
+				result = -1;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeMyDB();
+		}
+		
+		
+		return result;
+	}
+	// updateBoard(bb)
+	
+	
 }

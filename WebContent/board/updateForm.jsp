@@ -101,75 +101,66 @@ ul, li {
 		int num=Integer.parseInt(request.getParameter("num"));
 		String pageNum=request.getParameter("pageNum");
 		
+		//DB이동후 NUM 에 해당하는 정보를 가져오기
 		BoardDAO bdao=new BoardDAO();
-		bdao.updateReadCount(num);
-		
 		BoardBean bb=bdao.getBoard(num);
-		System.out.println("pro:"+bb);
-		
-		String content=bb.getContent();
-		if(content !=null){
-			content=content.replace("\r\n", "<br>");
-		}
+	
 	%>
 	<div id="mainWrapper">
 		<ul>
 			<!-- 게시판 제목 -->
-			<li>글쓰기</li>
+			<li>수정하기</li>
 
 			<!-- 게시판 목록  -->
+			<form action="board/updatePro.jsp" method="post">
 					<ul id="ulTable">
 						<li>
 							<ul>
-								<li>게시판 본문보기</li>
+								<li>게시판 글 수정하기</li>
 
 							</ul>
 						</li>
 						<!-- 게시물이 출력될 영역 -->
 						<li>
 							<ul>
-								<li>글번호: <%=bb.getNum() %>
-								<br>
-									조회수:	<%=bb.getReadcount() %>
+								<li>글쓴이 : 
+								<input type="text" name="name" style="height:25px"
+								value="<%=bb.getName() %>">
 								</li>
 							</ul>
 						</li>
 
 						<li>
 							<ul>
-								<li>글쓴이: <%=bb.getName() %>
-								<br>
-									작성일: <%=bb.getDate() %>
+								<li>비밀번호 : <input type="password" name="pass" style="height:25px"
+								placeholder="비밀번호를 입력하세요">
 								</li>
 							</ul>
 						</li>
 
 						<li>
 							<ul>
-								<li>제목 : <%=bb.getSubject() %>
+								<li>제목 : <input type="text" name="subject" style="height:25px"
+								value="<%=bb.getSubject()%>">
 								</li>
 							</ul>
 						</li>
 
 						<li>
 							<ul>
-								<li>내용 : <%=bb.getContent() %><br>
-								
+								<li>내용 <br>
+								<textarea name="content" style="height:303px;width:500px"><%=bb.getContent() %></textarea>
 								</li>
 							</ul>
 						</li>
 					</ul>
 				</li>
 			<div>
-				<input type="button" value="수정하기"
-					onclick="location.href='index5.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>'">
-				<input type="button" value="삭제하기">
-				<input type="button" value="답글쓰기">
-				<input type="button" value="목록으로">
+				<input type="submit" value="글 수정 완료"> 
 			</div>
 				
+			</form>
 
-			<!-- 게시판 페이징 영역 -->
 
 
 
