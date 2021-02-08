@@ -108,7 +108,7 @@ ul, li {
 		System.out.println("pro:"+bb);
 		
 		String content=bb.getContent();
-		if(content !=null){
+		if(content != null){
 			content=content.replace("\r\n", "<br>");
 		}
 	%>
