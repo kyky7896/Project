@@ -15,7 +15,7 @@
 	%>
 	<script type="text/javascript">
 		alert("로그아웃!")
-		location.href="index.jsp";
+		location.href="../index.jsp";
 	</script>
 
 </body>

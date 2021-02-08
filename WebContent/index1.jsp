@@ -9,33 +9,67 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>쉐어 마켓</title>
+  <title>--</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href="css/business-frontpage.css" rel="stylesheet">
-  
+<style>
+
+#slider{
+  width: 100%;
+  position:relative;
+}
+.slider__item{
+  width: 100%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 48px;
+  position:absolute;
+  top:0;
+  z-index:0;
+  opacity:0;
+  transition: all 1s ease-in-out;
+}
+.slider__item:nth-child(odd){
+  background-color:royalblue;
+}
+.slider__item:nth-child(even){
+  background-color:blueviolet;
+}
+.showing{
+  z-index:1;
+  opacity:1;
+}
+
+</style>  
 
 </head>
 
 <body>
 <%
-		//메인페이지를 로그인 상태에서만 사용가능
-		System.out.println("main.jsp 실행");
+		
 		String id = (String)session.getAttribute("id");
 	
-		if(id == null){	//로그인을 안한경우
-			response.sendRedirect("login.jsp");
-			
-		}
+		
 	
 	%>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">★<%= id %> 님 환영합니다. </a>
+      <a class="navbar-brand" href="#">
+      <% if(id != null){
+    	  %>
+    	    <%= id %> 님 환영합니다. 
+      <%
+      	}
+      %>
+      </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -66,7 +100,7 @@
           		if(id.equals("admin")){
           			%>
           			<li class="nav-item">
-                    <a class="nav-link" href="./member/memberList.jsp">회원 보기</a>
+                    <a class="nav-link" href="mailForm.jsp">메일 보내기</a>
                   </li>
           		<%
           		}
@@ -90,30 +124,15 @@
   <jsp:include page="/inc/header.jsp" />
   <!-- Page Content -->
   <div class="container">
-    <div class="row">
       <div class="col-md-8 mb-5">
-        <h2>What We Do</h2>
+        <h2>--</h2>
         <hr>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempore recusandae animi soluta quasi? Asperiores rem dolore eaque vel, porro, soluta unde debitis aliquam laboriosam. Repellat explicabo, maiores!</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis optio neque consectetur consequatur magni in nisi, natus beatae quidem quam odit commodi ducimus totam eum, alias, adipisci nesciunt voluptate. Voluptatum.</p>
         <a class="btn btn-primary btn-lg" href="#">Call to Action &raquo;</a>
       </div>
       <div class="col-md-4 mb-5">
-        <h2>Contact Us</h2>
-        <hr>
-        <address>
-          <strong>Start Bootstrap</strong>
-          <br>3481 Melrose Place
-          <br>Beverly Hills, CA 90210
-          <br>
-        </address>
-        <address>
-          <abbr title="Phone">P:</abbr>
-          (123) 456-7890
-          <br>
-          <abbr title="Email">E:</abbr>
-          <a href="mailto:#">name@example.com</a>
-        </address>
+       
       </div>
     </div>
     <!-- /.row -->

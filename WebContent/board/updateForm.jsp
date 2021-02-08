@@ -112,7 +112,8 @@ ul, li {
 			<li>수정하기</li>
 
 			<!-- 게시판 목록  -->
-			<form action="board/updatePro.jsp" method="post">
+			<form action="board/updatePro.jsp?pageNum=<%=pageNum %>" method="post">
+			<input type="hidden" name="num" value="<%=bb.getNum()%>">
 					<ul id="ulTable">
 						<li>
 							<ul>

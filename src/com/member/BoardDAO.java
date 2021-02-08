@@ -353,5 +353,98 @@ public class BoardDAO {
 	}
 	// updateBoard(bb)
 	
+	//deleteBoard(bb)
+	public int deleteBoard(BoardBean bb){
+		int result=-1;
+		try {
+			
+			con=getCon();
+			sql="select pass from sharemarket_board where num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, bb.getNum());
+			
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				if(bb.getPass().equals(rs.getString("pass"))){
+					sql = "delete from sharemarket_board where num=?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, bb.getNum());
+					
+					result=pstmt.executeUpdate();
+				}else{
+					result=0;
+					
+				}
+			}else{
+				result=-1;
+			}
+			
+			System.out.println("DAO: 글 삭제 처리->"+result);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closeMyDB();
+		}
+		return result;
+	}
+	//deleteBoard(bb)
 	
+	
+	//reInsertBoard(bb)
+	public void reInsertBoard(BoardBean bb){
+		int num=0;
+		//1.2.디비연결
+		try {
+			con=getCon();
+			
+			sql="select max(num) from sharemarket_board";
+			pstmt=con.prepareStatement(sql);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()){
+				num=rs.getInt(1)+1;
+			}
+			
+			System.out.println("DAO: 답글번호 확인 ->"+num);
+			//답글순서 재배치
+			sql="update sharemarket_board set re_seq=re_seq+1 "
+					+ "where re_ref=? and re_seq>?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, bb.getRe_ref());
+			pstmt.setInt(2, bb.getRe_seq());
+			
+			pstmt.executeUpdate();
+			
+			System.out.println("DAO : 답글순서 재배치");
+			
+			sql="insert into sharemarket_board (num, name, pass, subject, content, "
+					+ "readcount, re_ref, re_lev, re_seq, date, ip, file) "
+					+ "values(?,?,?,?,?,?,?,?,?,now(),?,?)";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setString(2, bb.getName());
+			pstmt.setString(3, bb.getPass());
+			pstmt.setString(4, bb.getSubject());
+			pstmt.setString(5, bb.getContent());
+			pstmt.setInt(6, 0);
+			pstmt.setInt(7, bb.getRe_ref());
+			pstmt.setInt(8, bb.getRe_lev()+1);
+			pstmt.setInt(9, bb.getRe_seq()+1);
+			pstmt.setString(10, bb.getIp());
+			pstmt.setString(11, bb.getFile());
+			
+			pstmt.executeUpdate();
+			
+			System.out.println("pro (답글):"+bb);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeMyDB();
+		}
+	}
+	//reInsertBoard(bb)
 }

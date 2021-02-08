@@ -33,7 +33,7 @@
 		%>
 		<script type="text/javascript">
 			alert("회원 탈퇴 완료!");
-			location.href = "index.jsp";
+			location.href = "../index.jsp";
 		</script>
 		<%
 	}else if(check==0){

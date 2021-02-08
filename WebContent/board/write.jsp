@@ -127,7 +127,7 @@ ul, li {
 								</li>
 							</ul>
 						</li>
-
+						
 						<li>
 							<ul>
 								<li>제목 : <input type="text" name="subject" style="height:25px">

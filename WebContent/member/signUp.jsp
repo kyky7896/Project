@@ -58,6 +58,31 @@ h1, h2, h3 {
 <title>회원가입</title>
 </head>
 <body>
+<script type="text/javascript">
+	function isSame(){
+		var pw=document.signUp.pw.value;
+		var confirmPW=document.signUp.pwConfirm.value;
+		
+		if(pw.length < 6 || pw.length > 16){
+			window.alert("비밀번호는 6글자 이상, 16글자 이하만 이용가능합니다.");
+			document.getElementById('pw').value=document.getElementById('pwCheck').value
+			document.getElementById('same').innerHTML='';
+			
+		}
+		if(document.getElementById('pw').value !='' && document.getElementById('pwCheck').value != ''){
+			if(document.getElementById('pw').value == document.getElementById('pwCheck').value ){
+				document.getElementById('same').innerHTML='비밀번호가 일치합니다';
+				document.getElementById('same').style.color='blue';
+			}
+			else{
+				document.getElementById('same').innerHTML='비밀번호가 일치하지 않습니다';
+				document.getElementById('same').style.color='red';
+			}
+		}
+	}
+
+
+</script>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 mx-auto">
@@ -68,7 +93,7 @@ h1, h2, h3 {
 								<h1>Signup</h1>
 							</div>
 						</div>
-						<form action="signUpPro.jsp" method="post" name="singUp" >
+						<form action="signUpPro.jsp" method="post" name="signUp" >
 							<div class="form-group">
 								<label for="id"> 아이디 </label>
 								<input type="text" name="id" class="form-control" 
@@ -76,14 +101,14 @@ h1, h2, h3 {
 							</div>
 							<div class="form-group">
 								<label for="pwd">비밀번호</label> 
-								<input type="password" name="pw" 
-									class="form-control" 
+								<input type="password" name="pw" id="pw"
+									class="form-control" onchange="isSame()"
 									placeholder="비밀번호를 입력하세요.">
 							</div>
 							<div class="form-group">
 								<label for="pwd1">비밀번호 확인</label> <input
-									type="password" name="pwConfirm" 
-									class="form-control" 
+									type="password" name="pwConfirm" id="pwCheck"
+									class="form-control" onchange="isSame()"
 									placeholder="비밀번호를 한번 더 입력하세요.">
 							</div>
 							<div class="form-group">

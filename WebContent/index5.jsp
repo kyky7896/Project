@@ -21,26 +21,70 @@
 <body>
 
   <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<%
+		
+		String id = (String)session.getAttribute("id");
+	
+		
+	%>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
+      <a class="navbar-brand" href="#">
+      <% if(id != null){
+    	  %>
+    	    <%= id %> 님 환영합니다. 
+      <%
+      	}
+      %>
+       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="index.jsp">Home
+          <li class="nav-item">
+            <a class="nav-link" href="index1.jsp">Home
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="index2.jsp">게시판</a>
+          <li class="nav-item active">
+            <a class="nav-link" href="index2.jsp">게시판
+              <span class="sr-only">(current)</span>
+            </a>
           </li>
+          
+          <%
+          if(id!=null){
+        	  %>
+        	<li class="nav-item">
+              <a class="nav-link" href="./member/update.jsp">정보수정</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./member/delete.jsp">탈퇴하기</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./member/logout.jsp">로그아웃</a>
+            </li>
+            
+            <%
+          		if(id.equals("admin")){
+          			%>
+          			<li class="nav-item">
+                    <a class="nav-link" href="mailForm.jsp">메일 보내기</a>
+                  </li>
+          		<%
+          		}
+
+          }else{
+            %>
+         
           <li class="nav-item">
             <a class="nav-link" href="./member/signUp.jsp">회원가입</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="./member/login.jsp">로그인</a>
           </li>
+          <%	} %>
         </ul>
       </div>
     </div>

@@ -33,7 +33,7 @@
 	%>
 	<script type="text/javascript">
 	alert("수정 성공!");
-	location.href="index2.jsp?pageNum=<%=pageNum%>";
+	location.href="../index2.jsp?pageNum=<%=pageNum%>";
 	
 	</script>
 	<%}else if(check==0){ %>

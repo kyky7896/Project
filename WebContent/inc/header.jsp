@@ -4,7 +4,7 @@
 	<div class="container h-50">
 		<div class="row h-50 align-items-center">
 			<div class="col-lg-10">
-				<h1 class="display-5 text-white mt-3 mb-1" href="#">Share market</h1>
+				<h1 class="display-5 text-white mt-3 mb-1" href="#">게시판</h1>
 				<p class="lead mb-4 text-white-50">..</p>
 			</div>
 		</div>

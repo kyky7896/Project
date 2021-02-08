@@ -163,9 +163,12 @@ ul, li {
 			<div>
 				<input type="button" value="수정하기"
 					onclick="location.href='index5.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>'">
-				<input type="button" value="삭제하기">
-				<input type="button" value="답글쓰기">
-				<input type="button" value="목록으로">
+				<input type="button" value="삭제하기"
+					onclick="location.href='index6.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>'">
+				<input type="button" value="답글쓰기"
+					onclick="location.href='index7.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum %>&re_ref=<%=bb.getRe_ref() %>&re_lev=<%=bb.getRe_lev()%>&re_seq=<%=bb.getRe_seq()%>'">
+				<input type="button" value="목록으로"
+					onclick="location.href='index2.jsp?pageNum=<%=pageNum%>'">
 			</div>
 				
 
