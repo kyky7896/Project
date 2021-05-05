@@ -159,7 +159,7 @@ form .error {
 									placeholder="비밀번호를 입력하세요">
 							</div>
 							<div class="col-md-12 text-center ">
-								<input type="submit"
+								<input type="submit" value="로그인"
 									class=" btn btn-block mybtn btn-primary tx-tfm">
 							</div>
 							<div class="col-md-12">

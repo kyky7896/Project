@@ -61,11 +61,6 @@
         <a class="btn btn-primary btn-lg" href="#">Call to Action &raquo;</a>
       </div>
       <div class="col-md-5 mb-5">
-      <h2></h2>
-        <table>
-   		
-   		</table>
-      </div>
     </div>
     <!-- /.row -->
 
